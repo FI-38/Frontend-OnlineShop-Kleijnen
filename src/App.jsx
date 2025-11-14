@@ -39,7 +39,7 @@ function App() {
     <Navi isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
     
     <main>
-      <Container classname='pt-5'>
+      <Container className='pt-5'>
         <Routes>
           <Route path='/' element={<Home isLoggedIn={ isLoggedIn } />} />
           <Route path='/register' element={<Register />} />

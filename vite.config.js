@@ -6,7 +6,8 @@ export default defineConfig({
   plugins: [react()],
     server: {
     allowedHosts: [
-      "fi.mshome.net" 
+      "fi.mshome.net",
+      "localhost"
     ]
   }
 })
