@@ -1,7 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react';
+import { Route, Routes, useNavigate} from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+
+import Navi from './components/Navi';
+import Home from './components/Home';
+import Register from './components/Register';
+import Login from './components/Login';
+import Contact from './components/Contact';
+
 import './App.css'
+
 
 function App() {
   const [count, setCount] = useState(0)
