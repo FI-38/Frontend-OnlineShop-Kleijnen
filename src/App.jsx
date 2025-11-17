@@ -36,7 +36,7 @@ function App() {
 
   return (
     <>
-    <Navi isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+    <Navi isLoggedIn={false} handleLogout={handleLogout} /> 
     
     <main>
       <Container className='pt-5'>
