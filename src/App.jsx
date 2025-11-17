@@ -40,14 +40,14 @@ function App() {
 
   return (
     <>
-    <Navi isLoggedIn={true} handleLogout={handleLogout} /> 
+    <Navi isLoggedIn={false} handleLogout={handleLogout} /> 
     
     <main>
       <Container className='pt-5'>
         <Routes>
-          <Route path='/' element={<Home isLoggedIn={ isLoggedIn } />} />
+          <Route path='/' element={<Home isLoggedIn={ false } />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path='/login' element={<Login isLoggedIn={false} setIsLoggedIn={setIsLoggedIn} />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/products' element={<Products />} />
@@ -66,3 +66,4 @@ export default App
 
 // Todos
 // 1. Display user.name instead of Open me
+// 2. CHANGE props back again!! test with true false, and when all works, isLoggedIn!!!
