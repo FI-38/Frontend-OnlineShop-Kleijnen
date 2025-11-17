@@ -1,12 +1,12 @@
 import React from "react";
 
-function Dashboard() {
+function Products() {
   return (
     <div>
-      <h1>Dashboard</h1>
+      <h1>Products</h1>
       <p>This is just boilerplate so it renders safely.</p>
     </div>
   );
 }
 
-export default Dashboard;
+export default Products;

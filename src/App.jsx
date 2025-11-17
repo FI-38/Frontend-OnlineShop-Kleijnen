@@ -7,6 +7,10 @@ import Home from './components/Home';
 import Register from './components/Register';
 import Login from './components/Login';
 import Contact from './components/Contact';
+import Dashboard from './components/Dashboard';
+import Products from './components/Products';
+import Cart from './components/Cart';
+import Profile from './components/Profile';
 
 import './App.css'
 
@@ -36,7 +40,7 @@ function App() {
 
   return (
     <>
-    <Navi isLoggedIn={false} handleLogout={handleLogout} /> 
+    <Navi isLoggedIn={true} handleLogout={handleLogout} /> 
     
     <main>
       <Container className='pt-5'>
@@ -45,6 +49,10 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/products' element={<Products />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/profile' element={<Profile />} />
         </Routes>
       </Container>
     </main>
@@ -54,3 +62,7 @@ function App() {
 }
 
 export default App
+
+
+// Todos
+// 1. Display user.name instead of Open me
