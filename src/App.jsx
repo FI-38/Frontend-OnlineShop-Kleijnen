@@ -40,14 +40,14 @@ function App() {
 
   return (
     <>
-    <Navi isLoggedIn={false} handleLogout={handleLogout} /> 
+    <Navi isLoggedIn={isLoggedIn} handleLogout={handleLogout} /> 
     
     <main>
       <Container className='pt-5'>
         <Routes>
-          <Route path='/' element={<Home isLoggedIn={ false } />} />
+          <Route path='/' element={<Home isLoggedIn={ isLoggedIn } />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login isLoggedIn={false} setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/products' element={<Products />} />
