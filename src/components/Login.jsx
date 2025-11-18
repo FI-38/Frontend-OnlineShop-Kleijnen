@@ -8,6 +8,7 @@ function Login({isLoggedIn, setIsLoggedIn}) {
   
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
+  const [messageVariant, setMessageVariant] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,17 +28,23 @@ function Login({isLoggedIn, setIsLoggedIn}) {
       if (response.ok) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('userID', data.userID);
+
         setMessage("You're logged in! You're now getting redirected.");
+        setMessageVariant('success');
         setIsLoggedIn(true);
+
         setTimeout(() => {
-          navigate('/');
+          navigate('/dashboard');
         }, 2000);
       } else {
-        console.log("Login failed.")
+
+        setMessage("Login failed.");
+        setMessageVariant('warning');
       }
     } catch(error) {
-      console.log("Oh no error", error);
+      console.log("Oh no, an error", error);
       setMessage("Something went wrong. Please debug.");
+      setMessageVariant('warning');
       
     }
   };
@@ -47,7 +54,7 @@ function Login({isLoggedIn, setIsLoggedIn}) {
     <div className='mt-4'>
       <h2 className='mb-5'>{isLoggedIn ? 'Welcome back!' : 'Log in'}</h2>
 
-      {message && <Alert variant='success'>{ message }</Alert>}
+      {message && <Alert variant={ messageVariant }>{ message }</Alert>}
 
       {!isLoggedIn && (<Form onSubmit={handleSubmit}>
         <Form.Group className='mb-2'>
@@ -59,7 +66,6 @@ function Login({isLoggedIn, setIsLoggedIn}) {
           <Form.Control type='password' name='password' placeholder='yourpassword123' required/>
         </Form.Group>
         <Button variant='primary' type='submit'>Log in</Button>
-
 
       </Form>)}
     </div>
