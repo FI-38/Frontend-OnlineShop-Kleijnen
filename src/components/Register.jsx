@@ -30,15 +30,44 @@ function Register() {
       console.log("too short")
       return;
     }
-   
 
+    // if code passed 2 checks above, make post request
+    try { // CHECK REGISTER in backend
+      const response = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/api/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, name, email, password})
+      });
+      console.log(response);
 
+      const data = await response.json();
 
-  }
+      if (response.ok) {
+        setMessage("Registration successfull! You're now redirected...");
+        setTimeout(() => navigate('/login'), 2000);
+      } else {
+        setMessage(data.error || "Registration failed.");
+      }
+
+    } catch (error) {
+      console.log("An error occurred during registration:", error);
+      setMessage("Registration failed. Please try again.");
+    }
+    e.target.reset();
+  }; // end handleSubmit
 
   return (
     <div className='mt-4'>
       <h1 className="mb-4">Register</h1>
+
+      {message && (
+        <Alert variant={message.includes('success') ? 'success' : 'danger'} >
+          {message}
+          </Alert>
+      )}
+
       <Form noValidate onSubmit={handleSubmit}>
           <Form.Group as={Row} className="mb-3" controlId="formGridName">
             <Form.Label column sm={4} >Name</Form.Label>
