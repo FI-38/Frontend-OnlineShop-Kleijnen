@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert , Row, Col} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -57,15 +57,20 @@ function Login({isLoggedIn, setIsLoggedIn}) {
       {message && <Alert variant={ messageVariant }>{ message }</Alert>}
 
       {!isLoggedIn && (<Form onSubmit={handleSubmit}>
-        <Form.Group className='mb-2'>
-          <Form.Label>Username</Form.Label>
-          <Form.Control type='text' name='username' placeholder='maximuster' required />
+
+        <Form.Group as={Row} className='mb-2'>
+          <Form.Label column sm={3}>Username</Form.Label>
+          <Col sm={9}>
+            <Form.Control type='text' name='username' placeholder='maximuster' required />
+          </Col>
         </Form.Group>
-        <Form.Group className='mb-3'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control type='password' name='password' placeholder='yourpassword123' required/>
+        <Form.Group as={Row} className='mb-2'>
+          <Form.Label column sm={3}>Password</Form.Label>
+          <Col sm={9}>
+            <Form.Control type='password' name='password' placeholder='yourpassword123' required/>
+          </Col>
         </Form.Group>
-        <Button variant='primary' type='submit'>Log in</Button>
+        <Button variant='primary' type='submit' className="mt-4">Log in</Button>
 
       </Form>)}
     </div>
