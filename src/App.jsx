@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard';
 import Products from './components/Products';
 import Cart from './components/Cart';
 import Profile from './components/Profile';
+import ProtectedRoute from './components/ProtectedRoute';
 
 import './App.css'
 
@@ -49,10 +50,10 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
           <Route path='/contact' element={<Contact />} />
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/products' element={<Products />} />
-          <Route path='/cart' element={<Cart />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path='/products' element={<ProtectedRoute><Products /></ProtectedRoute>} />
+          <Route path='/cart' element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+          <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         </Routes>
       </Container>
     </main>

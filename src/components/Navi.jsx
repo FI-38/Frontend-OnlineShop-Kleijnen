@@ -6,6 +6,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
 function Navi({ isLoggedIn, handleLogout }) {
+    const fakeusername = 'henkie';
     return (
         <Navbar fixed="top" expand="lg" className="bg-body-tertiary">
             <Container>
@@ -23,7 +24,7 @@ function Navi({ isLoggedIn, handleLogout }) {
                         <>
                             <Nav.Link as={Link} to="/products">Products</Nav.Link>
                             <Nav.Link as={Link} to="/cart">My Cart</Nav.Link>
-                            <NavDropdown title="Hi, [PLACEHOLDER user.name]" id="basic-nav-dropdown">
+                            <NavDropdown title={fakeusername} id="basic-nav-dropdown">
                                 <NavDropdown.Item as={Link} to="/dashboard">Dashboard</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/profile">My profile</NavDropdown.Item>
                                 <NavDropdown.Divider />
