@@ -7,10 +7,39 @@ import '../styles/Form.css';
 
 
 function Register() {
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const name = e.target.elements.name.value;
+    const username = e.target.elements.username.value;
+    const email = e.target.elements.email.value;
+    const password = e.target.elements.password.value;
+    const confirmPassword = e.target.elements.confirmPassword.value;
+
+    if (password !== confirmPassword) {
+      setMessage("Passwords don't match.");
+      console.log("Pw dont match");
+      return;
+    }
+
+    if (password.length < 8) {
+      setMessage("Password should be at least 8 characters.");
+      console.log("too short")
+      return;
+    }
+   
+
+
+
+  }
+
   return (
     <div className='mt-4'>
       <h1 className="mb-4">Register</h1>
-      <Form>
+      <Form noValidate onSubmit={handleSubmit}>
           <Form.Group as={Row} className="mb-3" controlId="formGridName">
             <Form.Label column sm={4} >Name</Form.Label>
             <Col sm={8}>
@@ -49,7 +78,7 @@ function Register() {
           </Form.Group>
     
 
-        <Button variant='primary' type='submit'>Register</Button>
+        <Button variant='primary' type='submit'>Confirm registration</Button>
       </Form>
     
     </div>
