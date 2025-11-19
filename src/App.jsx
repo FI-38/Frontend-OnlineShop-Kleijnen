@@ -12,6 +12,7 @@ import Products from './components/Products';
 import Cart from './components/Cart';
 import Profile from './components/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
+import PageNotFound from './components/PageNotFound';
 
 import './App.css'
 
@@ -54,6 +55,7 @@ function App() {
           <Route path='/products' element={<ProtectedRoute><Products /></ProtectedRoute>} />
           <Route path='/cart' element={<ProtectedRoute><Cart /></ProtectedRoute>} />
           <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path='*' element={ <PageNotFound /> } /> 
         </Routes>
       </Container>
     </main>

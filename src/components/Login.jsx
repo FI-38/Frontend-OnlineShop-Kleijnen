@@ -29,12 +29,12 @@ function Login({isLoggedIn, setIsLoggedIn}) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('userID', data.userID);
 
-        setMessage("You're logged in! You're now getting redirected.");
+        setMessage("Success! Just a sec, logging you in.");
         setMessageVariant('success');
         setIsLoggedIn(true);
 
         setTimeout(() => {
-          navigate('/dashboard');
+          navigate('/');
         }, 2000);
       } else {
 
