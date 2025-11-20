@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 
 function Home({ isLoggedIn }) {
+
+
   return (
     <>
       <h1 className="mb-4">Welcome to ShopShop GmbH</h1>
