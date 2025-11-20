@@ -28,7 +28,7 @@ function Navi({ isLoggedIn, handleLogout }) {
                                 <NavDropdown.Item as={Link} to="/dashboard">Dashboard</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/profile">My profile</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item as={Link} to="/">Logout</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/"><button onClick={handleLogout}>Logout</button></NavDropdown.Item>
                             </NavDropdown>
                         </>
                         }

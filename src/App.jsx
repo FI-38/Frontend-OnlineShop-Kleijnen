@@ -23,19 +23,26 @@ function App() {
   const [userId, setUserId] = useState();
 
   useEffect(() => {
+    console.log("RESTORING STATE");
     const token = localStorage.getItem('token');
-    const storedUserId = localStorage.getItem('userId');
+    console.log("THE TOKEN:", token);
+    const storedUserId = localStorage.getItem('userID');
+    console.log("THE USER ID", storedUserId);
 
     if (token && storedUserId) {
       setIsLoggedIn(true);
       setUserId(storedUserId);
     }
-  }, []);
+  }, []); 
+
+  useEffect(() => {
+    console.log("isLoggedIn is now: ", isLoggedIn);
+  }, [isLoggedIn]);
 
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem('token');
-    localStorage.removeItem('userId');
+    localStorage.removeItem('userID');
     navigate('/');
   }
 
