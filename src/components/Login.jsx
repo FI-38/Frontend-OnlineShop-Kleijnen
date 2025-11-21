@@ -4,7 +4,7 @@ import { Form, Button, Alert , Row, Col} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 
-function Login({isLoggedIn, setIsLoggedIn}) {
+function Login({isLoggedIn, setIsLoggedIn, setUsername}) {
   
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
@@ -28,14 +28,16 @@ function Login({isLoggedIn, setIsLoggedIn}) {
       if (response.ok) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('userID', data.userID);
+        localStorage.setItem('username', data.username )
 
         setMessage("Success! Just a sec, logging you in.");
         setMessageVariant('success');
-        setIsLoggedIn(true);
 
-        setTimeout(() => {
-          navigate('/');
-        }, 2000);
+        setIsLoggedIn(true);
+        setUsername(data.username);
+
+        navigate('/dashboard');
+
       } else {
 
         setMessage("Login failed.");
@@ -79,6 +81,3 @@ function Login({isLoggedIn, setIsLoggedIn}) {
 
 export default Login;
 
-
-// todos 
-// 1.  success message 

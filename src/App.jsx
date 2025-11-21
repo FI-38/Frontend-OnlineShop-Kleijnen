@@ -23,17 +23,17 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userId, setUserId] = useState();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [username, setUsername] = useState('');
 
   useEffect(() => {
-    console.log("RESTORING STATE");
     const token = localStorage.getItem('token');
-    console.log("THE TOKEN:", token);
     const storedUserId = localStorage.getItem('userID');
-    console.log("THE USER ID", storedUserId);
+    const storedUsername = localStorage.getItem('username');
 
     if (token && storedUserId) {
       setIsLoggedIn(true);
       setUserId(storedUserId);
+      setUsername(storedUsername);
     }
   }, []); 
 
@@ -49,6 +49,7 @@ function App() {
     setIsLoggedIn(false);
     localStorage.removeItem('token');
     localStorage.removeItem('userID');
+    localStorage.removeItem('username');
     setShowLogoutModal(false);
   }
 
@@ -57,10 +58,14 @@ function App() {
   }
 
 
-
   return (
     <>
-    <Navi isLoggedIn={isLoggedIn} handleLogout={handleLogout} /> 
+    <Navi 
+      isLoggedIn={isLoggedIn} 
+      setIsLoggedIn={setIsLoggedIn}
+      setUsername={setUsername}
+      username={username}
+      handleLogout={handleLogout} /> 
     <LogoutModal 
       show={showLogoutModal}
       onConfirm={confirmLogout}
@@ -71,12 +76,12 @@ function App() {
         <Routes>
           <Route path='/' element={<Home isLoggedIn={ isLoggedIn }  />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path='/login' element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUsername={setUsername}/>} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path='/products' element={<ProtectedRoute><Products /></ProtectedRoute>} />
           <Route path='/cart' element={<ProtectedRoute><Cart /></ProtectedRoute>} />
-          <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path='/profile' element={<ProtectedRoute><Profile isLoggedIn={isLoggedIn} userId={userId} /></ProtectedRoute>} />
           <Route path='*' element={ <PageNotFound /> } /> 
         </Routes>
       </Container>
@@ -88,11 +93,3 @@ function App() {
 
 export default App
 
-
-// Todos
-// 1. Display user.name instead of Open me
-// 2. CHANGE props back again!! test with true false, and when all works, isLoggedIn!!!
-
-
-  //  {message && <Alert>{ message }</Alert>}
-//
