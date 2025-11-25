@@ -26,11 +26,10 @@ function Products() {
   }
 
 
-
-
   return (
      <>
       <Button onClick={handleAddProductModal}>I am a test modal</Button>
+
       <AddProductModal
         show={showAddProductModal}
         onCancel={cancelAddProduct}
