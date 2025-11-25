@@ -24,7 +24,7 @@ function Navi({ isLoggedIn, username, handleLogout }) {
                         <>
                             <Nav.Link as={Link} to="/products">Products</Nav.Link>
                             <Nav.Link as={Link} to="/cart">My Cart</Nav.Link>
-                            <NavDropdown title={username ? username : 'My account'} id="basic-nav-dropdown">
+                            <NavDropdown title={username ? `Hello, ${username}` : 'My account'} id="basic-nav-dropdown">
                                 <NavDropdown.Item as={Link} to="/dashboard">Dashboard</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/profile">My profile</NavDropdown.Item>
                                 <NavDropdown.Divider />
