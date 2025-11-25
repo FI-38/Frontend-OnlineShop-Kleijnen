@@ -7,13 +7,14 @@ function ProductCard({ title, description, price, image}) {
   : "placeholder.jpg"; // fallback if no image
 
   console.log('image prop:', image);
-  
+  const shortDesc = description.slice(0, 60);
+
   return (
     <Card>
       <Card.Img variant="top" src={imageURL} />
       <Card.Body>
         <Card.Title>{title} - €{price}</Card.Title>
-        <Card.Text>{description} </Card.Text>
+        <Card.Text>{shortDesc} </Card.Text>
       </Card.Body>
 
     </Card>
