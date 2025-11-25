@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button, Card } from 'react-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
 import {useState, useEffect } from 'react';
 
 import AddProductModal from './modals/AddProductModal';
@@ -73,13 +73,17 @@ function Products() {
         onConfirm={confirmAddProduct}
       />
 
-      
+      <Row>
         {allProducts.map((item) => (
-          <ProductCard key={item.productID} 
-          title={item.product_name} 
-          description={item.product_description} 
-          price={item.product_price}/>
-        ))}
+          <Col key={item.productID} >
+            <ProductCard key={item.productID} 
+            title={item.product_name} 
+            description={item.product_description} 
+            price={item.product_price}
+            />
+          </Col>
+          ))}
+      </Row>
      
       
 
