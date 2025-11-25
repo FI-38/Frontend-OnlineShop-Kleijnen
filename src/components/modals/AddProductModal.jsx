@@ -6,7 +6,20 @@ function AddProductModal({show, onCancel, onConfirm}) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Yay submited");
+    console.log("Yay submited, one sec gathering data");
+
+    const form = e.target;
+    const productData = {
+      product_title: form.product_title.value,
+      description: form.description.value,
+      price: form.price.value,
+      image: form.image.files[0]
+    };
+    onConfirm(productData);
+  }
+
+  const handleImageUpload = () => {
+    console.log("Yay you attemptto upload file.")
   }
   return (
     <>
@@ -16,7 +29,7 @@ function AddProductModal({show, onCancel, onConfirm}) {
         </Modal.Header>
 
         <Modal.Body>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} id="addProductForm">
 
             <Form.Group as={Row} className="mb-3" controlId="formProductTitle">
               <Form.Label column sm={3}>Product Title</Form.Label>
@@ -42,15 +55,22 @@ function AddProductModal({show, onCancel, onConfirm}) {
             </Col>
           </Form.Group>
 
+         <Form.Group as={Row} className="position-relative mb-3">
+            <Form.Label column sm={3}>File</Form.Label>
+            <Col sm={9}>
+              <Form.Control type="file" required name="image" onChange={handleImageUpload} />
+            </Col>
+          </Form.Group>
+
+
+
           </Form>
-
-
 
         </Modal.Body>
 
         <Modal.Footer>
           <Button variant="secondary" onClick={onCancel}>Go back</Button>
-          <Button variant="primary" onClick={onConfirm}>Yes, add product</Button>
+          <Button variant="primary" form='addProductForm' type='submit'>Yes, add product</Button>
         </Modal.Footer>
       </Modal>
     </>
@@ -58,3 +78,5 @@ function AddProductModal({show, onCancel, onConfirm}) {
 }
 
 export default AddProductModal;
+
+// check if it reaches button on click, othrewise add id / name, see präsi

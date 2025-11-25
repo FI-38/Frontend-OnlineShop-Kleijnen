@@ -13,12 +13,10 @@ function Products() {
     setShowAddProductModal(true);
   }
 
-  const confirmAddProduct = () => {
-    // setIsLoggedIn(false);
-    // localStorage.removeItem('token');
-    // localStorage.removeItem('userID');
-    // localStorage.removeItem('username');
+  const confirmAddProduct = (productData) => {
     setShowAddProductModal(false);
+    console.log('brb hiding the modal');
+    console.log('received from modal', productData);
   }
 
   const cancelAddProduct = () => {
@@ -36,8 +34,6 @@ function Products() {
         onConfirm={confirmAddProduct}
       />
     </>
-
-           
 
   );
 }
