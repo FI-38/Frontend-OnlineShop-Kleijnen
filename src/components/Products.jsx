@@ -80,6 +80,7 @@ function Products() {
             title={item.product_name} 
             description={item.product_description} 
             price={item.product_price}
+            image={item.product_img_path}
             />
           </Col>
           ))}
