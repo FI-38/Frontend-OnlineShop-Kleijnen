@@ -1,26 +1,19 @@
 
-import { Form, Button, Modal, Alert, Row, Col, InputGroup } from 'react-bootstrap';
-
+import { Form, Button, Modal, Alert, Row, Col, InputGroup } from 'react-bootstrap'; 
 
 function AddProductModal({show, onCancel, onConfirm}) {
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Yay submited, one sec gathering data");
 
     const form = e.target;
-    const productData = {
-      product_title: form.product_title.value,
-      description: form.description.value,
-      price: form.price.value,
-      image: form.image.files[0]
-    };
+    const productData = new FormData(form);
+
     onConfirm(productData);
   }
 
-  const handleImageUpload = () => {
-    console.log("Yay you attemptto upload file.")
-  }
+
   return (
     <>
       <Modal show={show} onHide={onCancel}>
@@ -58,13 +51,10 @@ function AddProductModal({show, onCancel, onConfirm}) {
          <Form.Group as={Row} className="position-relative mb-3">
             <Form.Label column sm={3}>File</Form.Label>
             <Col sm={9}>
-              <Form.Control type="file" required name="image" onChange={handleImageUpload} />
+              <Form.Control type="file" required name="image" />
             </Col>
           </Form.Group>
-
-
-
-          </Form>
+         </Form>
 
         </Modal.Body>
 
