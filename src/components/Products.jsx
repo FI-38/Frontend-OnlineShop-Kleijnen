@@ -1,24 +1,40 @@
 import React from "react";
-import { Form, Button, Alert, Row, Col } from 'react-bootstrap';
-import {useState } from 'react';
+import { Form, Button, Card } from 'react-bootstrap';
+import {useState, useEffect } from 'react';
 
 import AddProductModal from './modals/AddProductModal';
-
+import ProductCard from './ProductCard';
 
 function Products() {
-
   const [showAddProductModal, setShowAddProductModal] = useState(false);
+  const [allProducts, setAllProducts] = useState([]);
 
    const handleAddProductModal = () => {
     setShowAddProductModal(true);
   }
+
+  const getAllProducts = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/api/products`, {
+        method: 'GET',
+      });
+      const productList = await response.json();
+      if (response.ok) {
+        console.log('all prodcuts wow', productList)
+        setAllProducts(productList);
+      } 
+    } catch (error) {
+      console.log("Error when fetching all products", error);
+    }
+  };
+
 
   const confirmAddProduct = async (productData) => {
     setShowAddProductModal(false);
     console.log('brb hiding the modal');
     console.log('received from modal', productData);
 
-    try { // WORK ON UPLOAD.JS in backend
+    try { 
       const response = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/api/upload`, {
         method: 'POST',
         body: productData,
@@ -28,16 +44,19 @@ function Products() {
 
       if (response.ok) {
         console.log("Product added!")
-        // TOODO : refetch all products on page
+        getAllProducts(); // refetch list
       }
     } catch (error) {
       console.log("Error when adding your product", error);
     }
- 
-  }; // EDIT ABOVe
-
-    
+  };
   
+
+  useEffect(() => {
+    getAllProducts(); // get all on mount
+  }, []);
+  
+
 
   const cancelAddProduct = () => {
     setShowAddProductModal(false);
@@ -53,9 +72,24 @@ function Products() {
         onCancel={cancelAddProduct}
         onConfirm={confirmAddProduct}
       />
+
+      
+        {allProducts.map((item) => (
+          <ProductCard key={item.productID} 
+          title={item.product_name} 
+          description={item.product_description} 
+          price={item.product_price}/>
+        ))}
+     
+      
+
+
     </>
 
   );
 }
 
 export default Products;
+
+
+// mapping allProducts https://stackoverflow.com/questions/79255651/best-practices-on-react-for-rendering-lists

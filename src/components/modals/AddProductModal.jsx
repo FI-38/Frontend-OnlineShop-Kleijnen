@@ -69,4 +69,3 @@ function AddProductModal({show, onCancel, onConfirm}) {
 
 export default AddProductModal;
 
-// check if it reaches button on click, othrewise add id / name, see präsi
