@@ -16,7 +16,7 @@ function AddProductModal({show, onCancel, onConfirm}) {
 
   return (
     <>
-      <Modal show={show} onHide={onCancel}>
+      <Modal show={show} onHide={onCancel} >
         <Modal.Header closeButton>
           <Modal.Title>Add a product</Modal.Title>
         </Modal.Header>

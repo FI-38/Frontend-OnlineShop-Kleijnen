@@ -5,6 +5,8 @@ import {useState, useEffect } from 'react';
 import AddProductModal from './modals/AddProductModal';
 import ProductCard from './ProductCard';
 
+
+
 function Products() {
   const [showAddProductModal, setShowAddProductModal] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
@@ -65,7 +67,9 @@ function Products() {
 
   return (
      <>
-      <Button onClick={handleAddProductModal}>I am a test modal</Button>
+      <div className='d-flex justify-content-end mb-3'>
+        <Button onClick={handleAddProductModal}>Add a product</Button>
+      </div>
 
       <AddProductModal
         show={showAddProductModal}
@@ -80,14 +84,13 @@ function Products() {
             title={item.product_name} 
             description={item.product_description} 
             price={item.product_price}
-            image={item.product_img_path}
-            />
+            image={item.product_img_path}  />
           </Col>
           ))}
       </Row>
      
       
-
+ 
 
     </>
 
