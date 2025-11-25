@@ -1,5 +1,5 @@
 
-import { Form, Button, Modal, Alert, Row, Col } from 'react-bootstrap';
+import { Form, Button, Modal, Alert, Row, Col, InputGroup } from 'react-bootstrap';
 
 
 function AddProductModal({show, onCancel, onConfirm}) {
@@ -25,18 +25,21 @@ function AddProductModal({show, onCancel, onConfirm}) {
               </Col>
           </Form.Group>
 
-            <Form.Group as={Row} className="mb-3" controlId="formDescShort">
+            <Form.Group as={Row} className="mb-3" controlId="formDescription">
               <Form.Label column sm={3}>Description</Form.Label>
               <Col sm={9}>
                 <Form.Control as='textarea' name='description' placeholder="Lorem ipsum ipsum" required />
               </Col>
           </Form.Group>
 
-            <Form.Group as={Row} className="mb-3" controlId="formProductTitle">
-              <Form.Label column sm={3}>Price</Form.Label>
-              <Col sm={9}>
+          <Form.Group as={Row} className="mb-3" controlId="formPrice">
+            <Form.Label column sm={3}>Price</Form.Label>
+            <Col sm={9}>
+              <InputGroup>
+                <InputGroup.Text>€</InputGroup.Text>
                 <Form.Control type='text' name='price' placeholder="123.45" required />
-              </Col>
+              </InputGroup>
+            </Col>
           </Form.Group>
 
           </Form>
