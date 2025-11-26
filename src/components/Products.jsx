@@ -3,18 +3,18 @@ import { Button, Row, Col } from 'react-bootstrap';
 import {useState, useEffect } from 'react';
 
 import AddProductModal from './modals/AddProductModal';
+import EditProductModal from './modals/EditProductModal';
 import ProductCard from './ProductCard';
-
 
 
 function Products() {
   const [showAddProductModal, setShowAddProductModal] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
 
-   const handleAddProductModal = () => {
-    setShowAddProductModal(true);
-  }
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
+  // ---------- GET ALL PRODUCTS -----------
   const getAllProducts = async () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/api/products`, {
@@ -30,7 +30,12 @@ function Products() {
     }
   };
 
+  useEffect(() => {
+    getAllProducts(); // get all products on mount
+  }, []);
 
+
+  // ---------- ADD A PRODUCT -----------
   const confirmAddProduct = async (productData) => {
     setShowAddProductModal(false);
     console.log('brb hiding the modal');
@@ -52,29 +57,83 @@ function Products() {
       console.log("Error when adding your product", error);
     }
   };
-  
-
-  useEffect(() => {
-    getAllProducts(); // get all on mount
-  }, []);
-  
 
 
   const cancelAddProduct = () => {
     setShowAddProductModal(false);
   }
 
+  // ---------- EDIT PRODUCT -----------
+   const handleEditClick = async (productID) => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/api/products/${productID}`);
+      const data = await res.json();
+
+      setSelectedProduct(data[0]);   // send to modal
+      setShowEditModal(true);
+      getAllProducts();
+    } catch (err) {
+      console.log("Error loading product", err);
+    }
+  };
+
+  const saveEditedProduct = async (editedProductData) => {
+    if (!selectedProduct) return;
+
+    try {
+      await fetch(`${import.meta.env.VITE_API_SERVER_URL}/api/products/${selectedProduct.productID}`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(editedProductData)
+      });
+
+      setShowEditModal(false);
+      getAllProducts();
+
+    } catch (error) {
+      console.log("Error updating product", error);
+    }
+  };
+
+
+
+// --------- DELETE PRODUCT
+
+  const deleteProduct = async (productID) => {
+    try {
+      await fetch(`${import.meta.env.VITE_API_SERVER_URL}/api/products/${productID}`, {
+        method: "DELETE"
+      });
+
+      setShowEditModal(false);
+      getAllProducts();
+    } catch (err) {
+      console.log("Error deleting product", err);
+    }
+  };
+
+
+  
+  
 
   return (
      <>
       <div className='d-flex justify-content-end mb-3'>
-        <Button onClick={handleAddProductModal}>Add a product</Button>
+        <Button onClick={() => setShowAddProductModal(true)}>Add a product</Button>
       </div>
 
       <AddProductModal
         show={showAddProductModal}
         onCancel={cancelAddProduct}
         onConfirm={confirmAddProduct}
+      />
+
+       <EditProductModal
+        show={showEditModal}
+        product={selectedProduct}
+        onClose={() => setShowEditModal(false)}
+        onSave={saveEditedProduct}
+        onDelete={deleteProduct}
       />
 
       <Row>
@@ -85,7 +144,8 @@ function Products() {
             description={item.product_description} 
             price={item.product_price}
             image={item.product_img_path}  
-            productID={item.productID}/>
+            productID={item.productID}
+            onClickEdit={handleEditClick} />
           </Col>
           ))}
       </Row>

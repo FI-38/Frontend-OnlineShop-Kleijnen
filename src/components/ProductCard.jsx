@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button} from 'react-bootstrap';
 
 
-function ProductCard({ title, description, price, image, productID}) {
+function ProductCard({ title, description, price, image, productID, onClickEdit}) {
 
   const imageURL =`${import.meta.env.VITE_API_SERVER_URL}/api/uploads/${image}` ;
 
@@ -12,22 +12,19 @@ function ProductCard({ title, description, price, image, productID}) {
   const shortDesc = description.slice(0, 50);
   const shortDescWithDots = shortDesc.concat('...');
 
-  const editProductModal = (e) => {
-    console.log('eclicked,', e);
-  }
-  
 
   return (
       <Card>
         <Link to={`/products/${productID}`} >
           <Card.Img variant="top" src={imageURL} />
         </Link>
-        
+      
         <Card.Body>
           <Card.Title>{title} - €{price} {productID}</Card.Title>
           <Card.Text>{shortDescWithDots} </Card.Text>
-            <Button onClick={editProductModal}>Edit</Button>
+            <Button onClick={() => onClickEdit(productID)}>Edit</Button>
         </Card.Body>
+
       </Card>
      
   );
