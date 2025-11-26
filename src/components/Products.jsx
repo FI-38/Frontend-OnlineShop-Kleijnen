@@ -14,6 +14,9 @@ function Products() {
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
+  const rolle = localStorage.getItem('rolle');
+  console.log(rolle)
+
   // ---------- GET ALL PRODUCTS -----------
   const getAllProducts = async () => {
     try {
@@ -44,6 +47,10 @@ function Products() {
     try { 
       const response = await fetch(`${import.meta.env.VITE_API_SERVER_URL}/api/upload`, {
         method: 'POST',
+        headers: {
+      
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
         body: productData,
       });
       const data = await response.json();
@@ -113,28 +120,33 @@ function Products() {
   };
 
 
-  
-  
+
 
   return (
      <>
-      <div className='d-flex justify-content-end mb-3'>
-        <Button onClick={() => setShowAddProductModal(true)}>Add a product</Button>
-      </div>
-
-      <AddProductModal
-        show={showAddProductModal}
-        onCancel={cancelAddProduct}
-        onConfirm={confirmAddProduct}
-      />
-
-       <EditProductModal
-        show={showEditModal}
-        product={selectedProduct}
-        onClose={() => setShowEditModal(false)}
-        onSave={saveEditedProduct}
-        onDelete={deleteProduct}
-      />
+      {rolle === 'admin' && (
+        <div className='d-flex justify-content-end mb-3'>
+          <Button onClick={() => setShowAddProductModal(true)}>Add a product</Button>
+        </div>
+      )}
+    
+      {rolle === 'admin' && (
+        <AddProductModal
+          show={showAddProductModal}
+          onCancel={cancelAddProduct}
+          onConfirm={confirmAddProduct}
+        />
+      )}
+     
+      {rolle === 'admin' && ( 
+        <EditProductModal
+          show={showEditModal}
+          product={selectedProduct}
+          onClose={() => setShowEditModal(false)}
+          onSave={saveEditedProduct}
+          onDelete={deleteProduct}
+        />
+        )}
 
       <Row>
         {allProducts.map((item) => (
@@ -145,7 +157,7 @@ function Products() {
             price={item.product_price}
             image={item.product_img_path}  
             productID={item.productID}
-            onClickEdit={handleEditClick} />
+            onClickEdit={rolle === 'admin' ? handleEditClick : undefined} />
           </Col>
           ))}
       </Row>

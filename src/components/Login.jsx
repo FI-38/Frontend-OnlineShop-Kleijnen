@@ -29,6 +29,7 @@ function Login({isLoggedIn, setIsLoggedIn, setUsername}) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('userID', data.userID);
         localStorage.setItem('username', data.username )
+        localStorage.setItem('rolle', data.rolle)
 
         setMessage("Success! Just a sec, logging you in.");
         setMessageVariant('success');
