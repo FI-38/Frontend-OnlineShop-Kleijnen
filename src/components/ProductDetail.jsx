@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Container, Row, Col } from 'react-bootstrap';
+
 
 function ProductDetail() {
   const { id } = useParams();
@@ -25,12 +27,17 @@ function ProductDetail() {
   if (!product) return <>Loading...</>;
 
   return (
-    <div>
-      <h1>{product.product_name}</h1>
-      <p>{product.product_description}</p>
-      <p>€ {product.product_price}</p>
-      <img src={`${import.meta.env.VITE_API_SERVER_URL}/api/uploads/${product.product_img_path}`} />
-    </div>
+    <Container>
+        <Row>
+            <Col md={6}><img className='img-fluid' src={`${import.meta.env.VITE_API_SERVER_URL}/api/uploads/${product.product_img_path}`} />  </Col>
+            <Col md={{ span: 4, offset: 1 }}>
+             <h2>{product.product_name}</h2>
+            <p>{product.product_description}</p>
+            <p>€ {product.product_price}</p>
+            </Col>
+          
+        </Row>
+    </Container>
   );
 }
 
