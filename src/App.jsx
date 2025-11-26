@@ -13,6 +13,7 @@ import Cart from './components/Cart';
 import Profile from './components/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
 import PageNotFound from './components/PageNotFound';
+import ProductDetail from './components/ProductDetail';
 
 import LogoutModal from './components/LogoutModal';
 
@@ -82,6 +83,8 @@ function App() {
           <Route path='/products' element={<ProtectedRoute><Products /></ProtectedRoute>} />
           <Route path='/cart' element={<ProtectedRoute><Cart /></ProtectedRoute>} />
           <Route path='/profile' element={<ProtectedRoute><Profile isLoggedIn={isLoggedIn} userId={userId} /></ProtectedRoute>} />
+          <Route path='/products/:id' element={<ProtectedRoute><ProductDetail /></ProtectedRoute>} />
+
           <Route path='*' element={ <PageNotFound /> } /> 
         </Routes>
       </Container>
