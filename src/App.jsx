@@ -26,6 +26,9 @@ function App() {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [username, setUsername] = useState('');
 
+  const [cart, setCart] = useState([]);
+
+  // LOGIN
   useEffect(() => {
     const token = localStorage.getItem('token');
     const storedUserId = localStorage.getItem('userID');
@@ -42,6 +45,7 @@ function App() {
     console.log("isLoggedIn is now: ", isLoggedIn);
   }, [isLoggedIn]);
 
+  // LOGOUT
   const handleLogout = () => {
     setShowLogoutModal(true);
   }
@@ -57,6 +61,30 @@ function App() {
   const cancelLogout = () => {
     setShowLogoutModal(false);
   }
+
+  // CART
+  const addToCart = (newProduct) => {
+    setCart(currentCart => {
+      const alreadyInCart = currentCart.find(p => p.productID === newProduct.productID);
+      if (alreadyInCart) {
+        return currentCart.map(p => 
+          p.productID === newProduct.productID ? {...p, quantity: p.quantity + 1} : p
+        );
+      } else {
+        return [...currentCart, {...newProduct, quantity: 1}];
+      }
+    });
+  };
+
+
+
+  useEffect(() => {
+    console.log('Cart now has: ', cart)
+    cart.forEach(item => {
+      console.log(`${item.product_name} - Quantity: ${item.quantity}`);
+    });
+  }, [cart])
+
 
 
   return (
@@ -81,9 +109,9 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path='/products' element={<ProtectedRoute><Products /></ProtectedRoute>} />
-          <Route path='/cart' element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+          <Route path='/cart' element={<ProtectedRoute><Cart cart={cart}/></ProtectedRoute>} />
           <Route path='/profile' element={<ProtectedRoute><Profile isLoggedIn={isLoggedIn} userId={userId} /></ProtectedRoute>} />
-          <Route path='/products/:id' element={<ProtectedRoute><ProductDetail /></ProtectedRoute>} />
+          <Route path='/products/:id' element={<ProtectedRoute><ProductDetail addToCart={addToCart} /></ProtectedRoute>} />
 
           <Route path='*' element={ <PageNotFound /> } /> 
         </Routes>

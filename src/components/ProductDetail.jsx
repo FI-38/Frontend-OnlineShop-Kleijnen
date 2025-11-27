@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
 
-function ProductDetail() {
+function ProductDetail({addToCart}) {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState({});
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -16,6 +16,7 @@ function ProductDetail() {
         } 
         const data = await res.json();
         setProduct(data[0]); 
+        console.log('heres ur product NAME', data[0].product_name);
       } catch (err) {
         console.error("Error fetching product:", err);
       }
@@ -23,6 +24,8 @@ function ProductDetail() {
 
     fetchProduct();
   }, []);
+
+
 
   if (!product) return <>Loading...</>;
 
@@ -41,6 +44,14 @@ function ProductDetail() {
              <h2>{product.product_name}</h2>
             <p>{product.product_description}</p>
             <p>{product.product_price} €</p>
+            <Button variant="primary" onClick={() => addToCart({
+                ...product, 
+                product_price: parseFloat(product.product_price) // ensure number
+              })}
+            >
+              Add to cart
+            </Button>
+            
             </Col>
           
         </Row>
