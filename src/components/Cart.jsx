@@ -16,14 +16,14 @@ function Cart({ cart }) {
       {cart.length > 0 && ( 
       <Container>
         <Row>
-          <Col md={10} >
+          <Col md={9} >
             {cart.map(p => (
               <Row key={p.productID} className="m-2">
-                <Col md={2}><img
-                  className='img-fluid'
-                  src={`${import.meta.env.VITE_API_SERVER_URL}/api/uploads/${p.product_img_path}`}
-                  width={100}
-                  height={100}/>
+                <Col md={2}>
+                  <img
+                    className='img-fluid'
+                    src={`${import.meta.env.VITE_API_SERVER_URL}/api/uploads/${p.product_img_path}`}
+                  />
                 </Col>
                 <Col md={4}>
                   <p>{p.product_name}</p>
@@ -40,8 +40,26 @@ function Cart({ cart }) {
               </Row>
             ))}
           </Col>
-          <Col md={2} >
-            <p>OVEVIEW costs will go here</p>
+
+          <Col md={3} >
+            <Row>
+              <Col xs={8} className='text-start'>Subtotal</Col>
+              <Col xs={4} className='text-end'>101.9</Col>
+            </Row>
+            <Row>
+              <Col xs={8} className='text-start'>Delivery costs</Col>
+              <Col xs={4} className='text-end'> IF MORE THAN 120 EURO FREE DELIVERY</Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <hr className="hr" />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={8} className='text-start'>Total</Col>
+              <Col xs={4} className='text-end'>CALCULATE TOTAL</Col>
+            </Row>
+
           </Col>
 
 
