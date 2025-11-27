@@ -149,7 +149,7 @@ function Products() {
         )}
 
       <Row>
-        {allProducts.map((item) => (
+        {allProducts.length === 0 ? <p>No products here yet.</p> : allProducts.map((item) => (
           <Col key={item.productID} md ={3}>
             <ProductCard key={item.productID} 
             title={item.product_name} 
