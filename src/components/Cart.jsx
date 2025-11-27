@@ -2,7 +2,9 @@ import React from "react";
 import { Button, Container, Row, Col } from "react-bootstrap"; 
 import { Link } from "react-router-dom";
 
-function Cart({ cart }) {
+function Cart({ cart, totalCartValue }) {
+
+
   return (
     <div>
       <h1 className='mb-3'>Cart</h1>
@@ -57,7 +59,7 @@ function Cart({ cart }) {
             </Row>
             <Row>
               <Col xs={8} className='text-start'>Total</Col>
-              <Col xs={4} className='text-end'>CALCULATE TOTAL</Col>
+              <Col xs={4} className='text-end'>{totalCartValue}</Col>
             </Row>
 
           </Col>

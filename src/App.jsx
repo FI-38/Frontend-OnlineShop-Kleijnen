@@ -27,6 +27,7 @@ function App() {
   const [username, setUsername] = useState('');
 
   const [cart, setCart] = useState([]);
+  const [totalCartValue, setTotalCartValue] = useState(0);
 
   // LOGIN
   useEffect(() => {
@@ -76,13 +77,17 @@ function App() {
     });
   };
 
-
-
   useEffect(() => {
     console.log('Cart now has: ', cart)
     cart.forEach(item => {
       console.log(`${item.product_name} - Quantity: ${item.quantity}`);
     });
+
+    const total = cart.reduce((acc, item) => {
+      return acc + item.quantity * parseFloat(item.product_price);
+    }, 0);
+
+    setTotalCartValue(total);
   }, [cart])
 
 
@@ -109,7 +114,7 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path='/products' element={<ProtectedRoute><Products /></ProtectedRoute>} />
-          <Route path='/cart' element={<ProtectedRoute><Cart cart={cart}/></ProtectedRoute>} />
+          <Route path='/cart' element={<ProtectedRoute><Cart cart={cart} totalCartValue={totalCartValue}/></ProtectedRoute>} />
           <Route path='/profile' element={<ProtectedRoute><Profile isLoggedIn={isLoggedIn} userId={userId} /></ProtectedRoute>} />
           <Route path='/products/:id' element={<ProtectedRoute><ProductDetail addToCart={addToCart} /></ProtectedRoute>} />
 
