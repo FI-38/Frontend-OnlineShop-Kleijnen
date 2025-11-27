@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/Form.css';
 
 
-
 function Register() {
   const [message, setMessage] = useState('');
 
@@ -94,7 +93,6 @@ function Register() {
               <Form.Control type='text' name='name' value={name} placeholder="Maxine"
                 onChange={(e) => {
                   setName(e.target.value);
-                  updateProgress();
                 }}
                 required />
             </Col>
@@ -106,7 +104,6 @@ function Register() {
             <Form.Control type='text' name='username' value={username} placeholder="maxine126ch" required
               onChange={(e) => {
                 setUsername(e.target.value);
-                updateProgress();
               }}
             />
           </Col>
@@ -119,7 +116,6 @@ function Register() {
             <Form.Control type='email' name='email' value={email} placeholder="maxine@mail.com" required
               onChange={(e) => {
                 setEmail(e.target.value);
-                updateProgress();
               }}            
             />
           </Col>
@@ -132,7 +128,6 @@ function Register() {
               <Form.Control type='password' name='password' value={password} placeholder="Min. 8 characters" required minLength={8} 
               onChange={(e) => {
                 setPassword(e.target.value);
-                updateProgress();
               }}              
               />
             </Col>
@@ -144,7 +139,6 @@ function Register() {
               <Form.Control type='password' name='confirmPassword' value={confirmPassword} placeholder="Re-enter password" required 
               onChange={(e) => {
                 setConfirmPassword(e.target.value);
-                updateProgress();
               }}
               />
             </Col>
