@@ -1,11 +1,11 @@
-import Container from 'react-bootstrap/Container';
+import {Container, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
-function Navi({ isLoggedIn, username, handleLogout }) {
+function Navi({ isLoggedIn, username, handleLogout , totalCartItems}) {
     return (
         <Navbar fixed="top" expand="lg" className="bg-body-tertiary">
             <Container>
@@ -14,7 +14,7 @@ function Navi({ isLoggedIn, username, handleLogout }) {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         
-                        {!isLoggedIn ?
+                        {!isLoggedIn ? 
                         <>
                             <Nav.Link as={Link} to="/login">Login</Nav.Link>
                             <Nav.Link as={Link} to="/register">Register</Nav.Link>
@@ -23,7 +23,10 @@ function Navi({ isLoggedIn, username, handleLogout }) {
                         :
                         <>
                             <Nav.Link as={Link} to="/products">Products</Nav.Link>
-                            <Nav.Link as={Link} to="/cart">My Cart</Nav.Link>
+                            <Nav.Link as={Link} to="/cart">
+                                My Cart   
+                                {totalCartItems > 0 && (<Badge bg="primary" pill className='ms1'>{totalCartItems}</Badge>)}
+                            </Nav.Link>
                             <NavDropdown title={username ? `Hello, ${username}` : 'My account'} id="basic-nav-dropdown">
                                 <NavDropdown.Item as={Link} to="/dashboard">Dashboard</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/profile">My profile</NavDropdown.Item>

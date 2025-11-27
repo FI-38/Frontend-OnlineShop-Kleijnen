@@ -28,6 +28,7 @@ function App() {
 
   const [cart, setCart] = useState([]);
   const [totalCartValue, setTotalCartValue] = useState(0);
+  const [totalCartItems, setTotalCartItems] = useState(0);
   const [deliveryCosts, setDeliveryCosts] = useState(5.95);
 
   // LOGIN
@@ -84,15 +85,21 @@ function App() {
       console.log(`${item.product_name} - Quantity: ${item.quantity}`);
     });
 
-    const total = cart.reduce((acc, item) => {
+    const totalVal = cart.reduce((acc, item) => {
       return acc + item.quantity * parseFloat(item.product_price);
     }, 0);
 
-    if (total > 120) {
+    setTotalCartValue(totalVal);
+
+    if (totalVal > 120) {
       setDeliveryCosts(0);
     }
 
-    setTotalCartValue(total);
+    const cartItemCount = cart.reduce((acc, item) => {
+      return acc + item.quantity;
+    }, 0);
+    setTotalCartItems(cartItemCount);
+
   }, [cart])
 
 
@@ -104,7 +111,9 @@ function App() {
       setIsLoggedIn={setIsLoggedIn}
       setUsername={setUsername}
       username={username}
-      handleLogout={handleLogout} /> 
+      handleLogout={handleLogout} 
+      totalCartItems={totalCartItems}
+      /> 
     <LogoutModal 
       show={showLogoutModal}
       onConfirm={confirmLogout}
