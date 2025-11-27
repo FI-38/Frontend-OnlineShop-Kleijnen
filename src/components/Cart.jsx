@@ -1,11 +1,11 @@
 import React from "react";
-import { Button } from "react-bootstrap"; 
+import { Button, Container, Row, Col } from "react-bootstrap"; 
 import { Link } from "react-router-dom";
 
 function Cart({ cart }) {
   return (
     <div>
-      <h1>Cart</h1>
+      <h1 className='mb-3'>Cart</h1>
       
       {cart.length === 0 && (
         <>
@@ -13,13 +13,50 @@ function Cart({ cart }) {
            <Button as={Link} to="/products" variant="primary ">Start shopping</Button>
            </> )}
 
-      {cart.map(p => (
-        <p key={p.productID}>{p.product_name} - {p.product_price} x {p.quantity}</p>
-      ))}
-     
+      {cart.length > 0 && ( 
+      <Container>
+        <Row>
+          <Col md={10} >
+            {cart.map(p => (
+              <Row key={p.productID} className="m-2">
+                <Col md={2}><img
+                  className='img-fluid'
+                  src={`${import.meta.env.VITE_API_SERVER_URL}/api/uploads/${p.product_img_path}`}
+                  width={100}
+                  height={100}/>
+                </Col>
+                <Col md={4}>
+                  <p>{p.product_name}</p>
+                </Col>
+                <Col md={1}>
+                  <p>{ p.quantity} </p>
+                </Col>
+                <Col md={1}>
+                  <p>{p.product_price * p.quantity}€</p>
+                </Col>
+                
+                
+
+              </Row>
+            ))}
+          </Col>
+          <Col md={2} >
+            <p>OVEVIEW costs will go here</p>
+          </Col>
+
+
+
+          </Row>
+        </Container>
+        )}
+   
       
     </div>
   );
 }
 
 export default Cart;
+
+
+
+// https://react.dev/learn/rendering-lists
