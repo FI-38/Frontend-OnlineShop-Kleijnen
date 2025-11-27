@@ -2,8 +2,8 @@ import React from "react";
 import { Button, Container, Row, Col } from "react-bootstrap"; 
 import { Link } from "react-router-dom";
 
-function Cart({ cart, totalCartValue }) {
-
+function Cart({ cart, totalCartValue, deliveryCosts }) {
+  
 
   return (
     <div>
@@ -50,7 +50,7 @@ function Cart({ cart, totalCartValue }) {
             </Row>
             <Row>
               <Col xs={8} className='text-start'>Delivery costs</Col>
-              <Col xs={4} className='text-end'> IF MORE THAN 120 EURO FREE DELIVERY</Col>
+              <Col xs={4} className='text-end'> {deliveryCosts}</Col>
             </Row>
             <Row>
               <Col xs={12}>

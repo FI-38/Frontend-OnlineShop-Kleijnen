@@ -28,6 +28,7 @@ function App() {
 
   const [cart, setCart] = useState([]);
   const [totalCartValue, setTotalCartValue] = useState(0);
+  const [deliveryCosts, setDeliveryCosts] = useState(5.95);
 
   // LOGIN
   useEffect(() => {
@@ -87,6 +88,10 @@ function App() {
       return acc + item.quantity * parseFloat(item.product_price);
     }, 0);
 
+    if (total > 120) {
+      setDeliveryCosts(0);
+    }
+
     setTotalCartValue(total);
   }, [cart])
 
@@ -114,7 +119,7 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path='/products' element={<ProtectedRoute><Products /></ProtectedRoute>} />
-          <Route path='/cart' element={<ProtectedRoute><Cart cart={cart} totalCartValue={totalCartValue}/></ProtectedRoute>} />
+          <Route path='/cart' element={<ProtectedRoute><Cart cart={cart} totalCartValue={totalCartValue} deliveryCosts={deliveryCosts}/></ProtectedRoute>} />
           <Route path='/profile' element={<ProtectedRoute><Profile isLoggedIn={isLoggedIn} userId={userId} /></ProtectedRoute>} />
           <Route path='/products/:id' element={<ProtectedRoute><ProductDetail addToCart={addToCart} /></ProtectedRoute>} />
 
