@@ -20,7 +20,7 @@ function ProductCard({ title, description, price, image, productID, onClickEdit}
         </Link>
       
         <Card.Body>
-          <Card.Title>{title} - €{price} {productID}</Card.Title>
+          <Card.Title>{title} - {price} €</Card.Title>
           <Card.Text>{shortDescWithDots} </Card.Text>
             {onClickEdit && (
               <Button onClick={() => onClickEdit(productID)}>Edit</Button>

@@ -33,7 +33,7 @@ function ProductDetail() {
             <Col md={{ span: 4, offset: 1 }}>
              <h2>{product.product_name}</h2>
             <p>{product.product_description}</p>
-            <p>€ {product.product_price}</p>
+            <p>{product.product_price} €</p>
             </Col>
           
         </Row>
