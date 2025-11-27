@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Container, Row, Col } from 'react-bootstrap';
 
 
@@ -27,7 +27,14 @@ function ProductDetail() {
   if (!product) return <>Loading...</>;
 
   return (
+  
     <Container>
+      <Row>
+        <Col className='text-start mb-3'>
+          <Link to="/products">&lt; Back to Products</Link>
+        </Col>
+
+      </Row>
         <Row>
             <Col md={6}><img className='img-fluid' src={`${import.meta.env.VITE_API_SERVER_URL}/api/uploads/${product.product_img_path}`} />  </Col>
             <Col md={{ span: 4, offset: 1 }}>
@@ -38,6 +45,7 @@ function ProductDetail() {
           
         </Row>
     </Container>
+
   );
 }
 
