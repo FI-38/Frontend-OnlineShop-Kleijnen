@@ -39,7 +39,8 @@ function Cart({ cart, totalCartValue, deliveryCosts, decreaseQty, increaseQty, d
                 <Col md={1} className="d-flex align-items-center gap-1">
                     <Button size="sm" className="m-1" variant="secondary" style={{ width: '30px' }} onClick={() => decreaseQty(p.productID)}>-</Button>
                     <Button size="sm" className="m-1" variant="primary" style={{ width: '30px' }} onClick={() => increaseQty(p.productID)}>+</Button>
-                    <span><Button variant="danger" size="sm"  style={{ width: '40px', fontSize: '10px' }}>Delete</Button></span>
+                    <span><Button variant="danger" size="sm"  style={{ width: '40px', fontSize: '10px' }} 
+                    className="d-flex justify-content-center align-items-center" onClick={() => deleteProductFromCart(p.productID)}>Delete</Button></span>
                 </Col>
               </Row>
             ))}
