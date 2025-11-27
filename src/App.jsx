@@ -79,6 +79,8 @@ function App() {
     });
   };
 
+
+
   useEffect(() => {
     console.log('Cart now has: ', cart)
     cart.forEach(item => {
@@ -101,7 +103,6 @@ function App() {
     setTotalCartItems(cartItemCount);
 
   }, [cart])
-
 
 
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from 'react';
-import { Form, Button, Alert, Row, Col } from 'react-bootstrap';
+import { Form, Button, Alert, Row, Col, ProgressBar } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Form.css';
 
@@ -8,16 +8,24 @@ import '../styles/Form.css';
 
 function Register() {
   const [message, setMessage] = useState('');
+
+  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const [progress, setProgress] = useState(0);
+
   const navigate = useNavigate();
 
+  if (name.trim() !== 0){
+    console.log('not empty')
+  }
+
+  // SUBMIT
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const name = e.target.elements.name.value;
-    const username = e.target.elements.username.value;
-    const email = e.target.elements.email.value;
-    const password = e.target.elements.password.value;
-    const confirmPassword = e.target.elements.confirmPassword.value;
 
     if (password !== confirmPassword) {
       setMessage("Passwords don't match.");
@@ -58,8 +66,15 @@ function Register() {
     e.target.reset();
   }; // end handleSubmit
 
+  const updateProgress = () => {
+    const filled = [name, username, email, password, confirmPassword]
+      .filter(val => val.trim() !== '').length;
+    setProgress(filled * 20);
+  };
+
   return (
     <div className='mt-4'>
+      <ProgressBar now={progress} className='mb-3'></ProgressBar>
       <h1 className="mb-4">Register</h1>
 
       {message && (
@@ -68,18 +83,30 @@ function Register() {
           </Alert>
       )}
 
+    
+
       <Form noValidate onSubmit={handleSubmit}>
           <Form.Group as={Row} className="mb-3" controlId="formGridName">
             <Form.Label column sm={4} >Name</Form.Label>
             <Col sm={8}>
-              <Form.Control type='text' name='name' placeholder="Maxine" required />
+              <Form.Control type='text' name='name' value={name} placeholder="Maxine"
+                onChange={(e) => {
+                  setName(e.target.value);
+                  updateProgress();
+                }}
+                required />
             </Col>
           </Form.Group>
        
         <Form.Group as={Row} className="mb-3"controlId="formGridUsername">
           <Form.Label column sm={4}>Username</Form.Label>
           <Col sm={8}>
-            <Form.Control type='text' name='username' placeholder="maxine126ch" required />
+            <Form.Control type='text' name='username' value={username} placeholder="maxine126ch" required
+              onChange={(e) => {
+                setUsername(e.target.value);
+                updateProgress();
+              }}
+            />
           </Col>
         </Form.Group>
       
@@ -87,7 +114,12 @@ function Register() {
         <Form.Group as={Row} className="mb-3">
           <Form.Label column sm={4}>Email</Form.Label>
           <Col sm={8}>
-            <Form.Control type='email' name='email' placeholder="maxine@mail.com" required />
+            <Form.Control type='email' name='email' value={email} placeholder="maxine@mail.com" required
+              onChange={(e) => {
+                setEmail(e.target.value);
+                updateProgress();
+              }}            
+            />
           </Col>
         </Form.Group>
 
@@ -95,14 +127,24 @@ function Register() {
           <Form.Group as={Row} className="mb-3" controlId="formGridPassword">
             <Form.Label column sm={4}>Password</Form.Label>
             <Col sm={8}>
-              <Form.Control type='password' name='password' placeholder="Min. 8 characters" required minLength={8} />
+              <Form.Control type='password' name='password' value={password} placeholder="Min. 8 characters" required minLength={8} 
+              onChange={(e) => {
+                setPassword(e.target.value);
+                updateProgress();
+              }}              
+              />
             </Col>
           </Form.Group>
 
           <Form.Group as={Row} className="mb-3" controlId="formGridPasswordRepeat">
             <Form.Label column sm={4}>Repeat password</Form.Label>
             <Col sm={8}>
-              <Form.Control type='password' name='confirmPassword' placeholder="Re-enter password" required />
+              <Form.Control type='password' name='confirmPassword' value={confirmPassword} placeholder="Re-enter password" required 
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+                updateProgress();
+              }}
+              />
             </Col>
           </Form.Group>
     
