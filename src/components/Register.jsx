@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import { Form, Button, Alert, Row, Col, ProgressBar } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Form.css';
@@ -66,11 +66,13 @@ function Register() {
     e.target.reset();
   }; // end handleSubmit
 
-  const updateProgress = () => {
-    const filled = [name, username, email, password, confirmPassword]
-      .filter(val => val.trim() !== '').length;
-    setProgress(filled * 20);
-  };
+    useEffect(() => {
+      const filled = [name, username, email, password, confirmPassword]
+      .filter(v => v.trim() !== '').length;
+
+      setProgress(filled * 20);
+    }, [name, username, email, password, confirmPassword]);
+
 
   return (
     <div className='mt-4'>

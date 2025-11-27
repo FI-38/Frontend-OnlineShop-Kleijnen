@@ -65,7 +65,7 @@ function App() {
     setShowLogoutModal(false);
   }
 
-  // CART
+  // CART Add Product
   const addToCart = (newProduct) => {
     setCart(currentCart => {
       const alreadyInCart = currentCart.find(p => p.productID === newProduct.productID);
@@ -78,7 +78,6 @@ function App() {
       }
     });
   };
-
 
 
   useEffect(() => {
@@ -94,7 +93,7 @@ function App() {
     setTotalCartValue(totalVal);
 
     if (totalVal > 120) {
-      setDeliveryCosts(0);
+      setDeliveryCosts(0); // free delivery
     }
 
     const cartItemCount = cart.reduce((acc, item) => {
@@ -103,6 +102,31 @@ function App() {
     setTotalCartItems(cartItemCount);
 
   }, [cart])
+
+
+
+  // CART In- or decrement quantity ON cart items, or Delete
+
+  const increaseQty = (id) => {
+    setCart(cart => cart.map(p => p.productID === id ? 
+      { ...p, quantity: p.quantity + 1 } : p
+      )
+    );
+  };
+
+  const decreaseQty = (id) => {
+    setCart(cart => cart.map(p =>p.productID === id ? 
+          { ...p, quantity: Math.max(1, p.quantity - 1) } : p
+      )
+    );
+};
+
+  const deleteProductFromCart = (id) => {
+    setCart(cart => cart.filter(p => p.productID !== id )
+
+    )
+  }
+
 
 
   return (
@@ -129,7 +153,16 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/dashboard' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path='/products' element={<ProtectedRoute><Products /></ProtectedRoute>} />
-          <Route path='/cart' element={<ProtectedRoute><Cart cart={cart} totalCartValue={totalCartValue} deliveryCosts={deliveryCosts}/></ProtectedRoute>} />
+          <Route path='/cart' element={<ProtectedRoute>
+                                                      <Cart 
+                                                          cart={cart} 
+                                                          totalCartValue={totalCartValue} 
+                                                          deliveryCosts={deliveryCosts}
+                                                          increaseQty={increaseQty}
+                                                          decreaseQty={decreaseQty}
+                                                          deleteProductFromCart={deleteProductFromCart}
+                                                          />
+                                        </ProtectedRoute>} />
           <Route path='/profile' element={<ProtectedRoute><Profile isLoggedIn={isLoggedIn} userId={userId} /></ProtectedRoute>} />
           <Route path='/products/:id' element={<ProtectedRoute><ProductDetail addToCart={addToCart} /></ProtectedRoute>} />
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Container, Row, Col } from "react-bootstrap"; 
 import { Link } from "react-router-dom";
 
-function Cart({ cart, totalCartValue, deliveryCosts }) {
+function Cart({ cart, totalCartValue, deliveryCosts, decreaseQty, increaseQty, deleteProductFromCart }) {
   
 
   return (
@@ -27,18 +27,20 @@ function Cart({ cart, totalCartValue, deliveryCosts }) {
                     src={`${import.meta.env.VITE_API_SERVER_URL}/api/uploads/${p.product_img_path}`}
                   />
                 </Col>
-                <Col md={4}>
+                <Col md={3}>
                   <p>{p.product_name}</p>
                 </Col>
                 <Col md={1}>
-                  <p>{ p.quantity} </p>
+                  <p>{(p.product_price * p.quantity).toFixed(2)}€</p>
                 </Col>
-                <Col md={1}>
-                  <p>{p.product_price * p.quantity}€</p>
+                <Col md={2}>
+                  <p>{p.quantity}</p>
                 </Col>
-                
-                
-
+                <Col md={1} className="d-flex align-items-center gap-1">
+                    <Button size="sm" className="m-1" variant="secondary" style={{ width: '30px' }} onClick={() => decreaseQty(p.productID)}>-</Button>
+                    <Button size="sm" className="m-1" variant="primary" style={{ width: '30px' }} onClick={() => increaseQty(p.productID)}>+</Button>
+                    <span><Button variant="danger" size="sm"  style={{ width: '40px', fontSize: '10px' }}>Delete</Button></span>
+                </Col>
               </Row>
             ))}
           </Col>
@@ -59,7 +61,7 @@ function Cart({ cart, totalCartValue, deliveryCosts }) {
             </Row>
             <Row>
               <Col xs={8} className='text-start'>Total</Col>
-              <Col xs={4} className='text-end'>{totalCartValue}</Col>
+              <Col xs={4} className='text-end'>{totalCartValue.toFixed(2)}</Col>
             </Row>
 
           </Col>
