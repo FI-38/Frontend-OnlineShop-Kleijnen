@@ -14,8 +14,7 @@ React-Frontend for a fullstack online shop, built with Vite, React, and Bootstra
 ![React](https://img.shields.io/badge/Frontend-React-61DAFB?logo=react&logoColor=white)
 ![Vite](https://img.shields.io/badge/Bundler-Vite-646CFF?logo=vite&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Runtime-Node.js-339933?logo=node.js&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/UI-Bootstrap-7952B3?logo=bootstrap&logoColor=white)
-![GitHub](https://img.shields.io/badge/Version%20Control-GitHub-181717?logo=github&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/UI-Bootstrap-7952B3?logo=bootstrap&logoColor=white) ![GitHub](https://img.shields.io/badge/Version%20Control-GitHub-181717?logo=github&logoColor=white) [![Sass](https://img.shields.io/badge/Sass-C69?logo=sass&logoColor=fff)](#)
 
 ## Installation
 1. Install dependencies
