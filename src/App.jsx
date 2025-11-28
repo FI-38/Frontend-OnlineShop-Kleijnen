@@ -92,8 +92,10 @@ function App() {
 
     setTotalCartValue(totalVal);
 
-    if (totalVal > 120) {
-      setDeliveryCosts(0); // free delivery
+    if (totalVal < 120) {
+      setDeliveryCosts(5.95); 
+    } else {
+      setDeliveryCosts(0);
     }
 
     const cartItemCount = cart.reduce((acc, item) => {

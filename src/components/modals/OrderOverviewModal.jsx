@@ -16,7 +16,8 @@ function AddProductModal({show, handleShow, handleClose}) {
         <Modal.Header closeButton>
           <Modal.Title>Order overview</Modal.Title>
         </Modal.Header>
-        <Modal.Body>I will not close if you click outside me. Do not even try to press escape key.
+        <Modal.Body>
+            I will not close if you click outside me. Do not even try to press escape key.
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleClose}> Okay </Button>

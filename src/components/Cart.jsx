@@ -11,7 +11,7 @@ function Cart({ cart, totalCartValue, deliveryCosts, decreaseQty, increaseQty, d
 
   const handleClose = () => setShow(false);
   
-  const completeOrder = (cart) => {
+  const completeOrder = () => {
     console.log('ordered wow');
     setShow(true);
   }
@@ -27,6 +27,7 @@ function Cart({ cart, totalCartValue, deliveryCosts, decreaseQty, increaseQty, d
           setShow={setShow}
           backdrop="static"
           keyboard={false}
+          cart={cart}
         />
       
       {cart.length === 0 && (
@@ -74,7 +75,7 @@ function Cart({ cart, totalCartValue, deliveryCosts, decreaseQty, increaseQty, d
             </Row>
             <Row>
               <Col xs={8} className='text-start'>Subtotal</Col>
-              <Col xs={4} className='text-end'>{totalCartValue}</Col>
+              <Col xs={4} className='text-end'>{totalCartValue.toFixed(2)}</Col>
             </Row>
             <Row>
               <Col xs={8} className='text-start'>Delivery costs</Col>
@@ -87,11 +88,11 @@ function Cart({ cart, totalCartValue, deliveryCosts, decreaseQty, increaseQty, d
             </Row>
             <Row>
               <Col xs={8} className='text-start'>Total</Col>
-              <Col xs={4} className='text-end mb-3'>{totalCartValue.toFixed(2)}</Col>
+              <Col xs={4} className='text-end mb-3'>{(totalCartValue + deliveryCosts).toFixed(2)}</Col>
             </Row>
             <Row>
               <Col>
-                <Button  variant="primary" onClick={() => completeOrder(cart)}>Complete order</Button>
+                <Button  variant="primary" onClick={() => completeOrder()}>Complete order</Button>
               </Col>
             </Row>
 
