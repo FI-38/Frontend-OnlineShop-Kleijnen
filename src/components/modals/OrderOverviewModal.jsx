@@ -1,9 +1,8 @@
 import React from "react";
-import { useState } from 'react';
 import {Button, Modal } from 'react-bootstrap';
 
 
-function AddProductModal({show, handleShow, handleClose}) {
+function AddProductModal({show,  handleClose, cart, totalCartValue, deliveryCosts}) {
 
   return (
     <>
@@ -17,7 +16,15 @@ function AddProductModal({show, handleShow, handleClose}) {
           <Modal.Title>Order overview</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            I will not close if you click outside me. Do not even try to press escape key.
+            <p className="mb-3">You've ordered:</p>
+           <ul>
+            {cart.map(p => (
+                <li key={p.productID}>{p.quantity} x {p.product_name}: {(p.product_price * p.quantity).toFixed(2)}€</li>
+            ))}
+
+
+           </ul>
+           <p>Total: {(totalCartValue + deliveryCosts).toFixed(2)}</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleClose}> Okay </Button>

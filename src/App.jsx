@@ -163,6 +163,10 @@ function App() {
                                                           increaseQty={increaseQty}
                                                           decreaseQty={decreaseQty}
                                                           deleteProductFromCart={deleteProductFromCart}
+                                                          setTotalCartItems={setTotalCartItems}
+                                                          setCart={setCart}
+                                                          setTotalCartValue={setTotalCartValue}
+                                                          setDeliveryCosts={setDeliveryCosts}
                                                           />
                                         </ProtectedRoute>} />
           <Route path='/profile' element={<ProtectedRoute><Profile isLoggedIn={isLoggedIn} userId={userId} /></ProtectedRoute>} />

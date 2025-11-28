@@ -5,15 +5,27 @@ import { Link } from "react-router-dom";
 import OrderOverviewModal from './modals/OrderOverviewModal';
 
 
-function Cart({ cart, totalCartValue, deliveryCosts, decreaseQty, increaseQty, deleteProductFromCart }) {
+function Cart({ cart, totalCartValue, deliveryCosts, decreaseQty, increaseQty, deleteProductFromCart,
+  setTotalCartValue, setCart,setTotalCartItems,setDeliveryCosts }) {
   
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  
+  const resetCart = () => {
+    setTotalCartValue(0);
+    setCart([]);
+    setTotalCartItems(0);
+    setDeliveryCosts(5.95);
+  }
+
+  const handleClose = () => {
+    setShow(false);
+    resetCart();
+  } 
+
   const completeOrder = () => {
     console.log('ordered wow');
     setShow(true);
+
   }
 
   
@@ -28,6 +40,9 @@ function Cart({ cart, totalCartValue, deliveryCosts, decreaseQty, increaseQty, d
           backdrop="static"
           keyboard={false}
           cart={cart}
+          totalCartValue={totalCartValue}
+          deliveryCosts={deliveryCosts}
+
         />
       
       {cart.length === 0 && (
