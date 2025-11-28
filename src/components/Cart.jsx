@@ -1,13 +1,33 @@
-import React from "react";
+import { React, useState } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap"; 
 import { Link } from "react-router-dom";
 
+import OrderOverviewModal from './modals/OrderOverviewModal';
+
+
 function Cart({ cart, totalCartValue, deliveryCosts, decreaseQty, increaseQty, deleteProductFromCart }) {
   
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  
+  const completeOrder = (cart) => {
+    console.log('ordered wow');
+    setShow(true);
+  }
+
+  
   return (
     <div>
       <h1 className='mb-3'>Cart</h1>
+
+        <OrderOverviewModal
+          show={show}
+          handleClose={handleClose}
+          setShow={setShow}
+          backdrop="static"
+          keyboard={false}
+        />
       
       {cart.length === 0 && (
         <>
@@ -47,9 +67,14 @@ function Cart({ cart, totalCartValue, deliveryCosts, decreaseQty, increaseQty, d
           </Col>
 
           <Col md={3} >
+          <Row>
+              <Col className='text-center mb-3'>
+                <h3>Overview</h3>
+                </Col>
+            </Row>
             <Row>
               <Col xs={8} className='text-start'>Subtotal</Col>
-              <Col xs={4} className='text-end'>101.9</Col>
+              <Col xs={4} className='text-end'>{totalCartValue}</Col>
             </Row>
             <Row>
               <Col xs={8} className='text-start'>Delivery costs</Col>
@@ -62,7 +87,12 @@ function Cart({ cart, totalCartValue, deliveryCosts, decreaseQty, increaseQty, d
             </Row>
             <Row>
               <Col xs={8} className='text-start'>Total</Col>
-              <Col xs={4} className='text-end'>{totalCartValue.toFixed(2)}</Col>
+              <Col xs={4} className='text-end mb-3'>{totalCartValue.toFixed(2)}</Col>
+            </Row>
+            <Row>
+              <Col>
+                <Button  variant="primary" onClick={() => completeOrder(cart)}>Complete order</Button>
+              </Col>
             </Row>
 
           </Col>
