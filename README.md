@@ -62,7 +62,7 @@ The frontend runs on: ``` http://YOUR-IP-ADDRESS:5173 ```
 ## Project structure
 
 ```
-Frontend-OnlineShop-Name/
+Frontend-OnlineShop-Kleijnen/
 ├── node_modules/
 ├── public/
 │   └── images/
