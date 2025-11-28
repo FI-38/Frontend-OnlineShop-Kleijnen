@@ -1,32 +1,32 @@
 
 export const cardDetails = {
     0: {
-        imgUrl: "../../public/images/1.png",
+        imgUrl: "../../images/1.png",
         title: "Text 1"
     },
 
     1: {
-        imgUrl: "../../public/images/2.png",
+        imgUrl: "../../images/2.png",
         title: "Text 2"
     },
 
     2: {
-        imgUrl: "../../public/images/3.png",
+        imgUrl: "../../images/3.png",
         title: "Text 3"
     },
 
     3: {
-        imgUrl: "../../public/images/4.png",
+        imgUrl: "../../images/4.png",
         title: "Text 4"
     },
 
     4: {
-        imgUrl: "../../public/images/5.png",
+        imgUrl: "../../images/5.png",
         title: "Text 5"
     },
 
     5: {
-        imgUrl: "../../public/images/6.png",
+        imgUrl: "../../images/6.png",
         title: "Text 6"
     },
 
