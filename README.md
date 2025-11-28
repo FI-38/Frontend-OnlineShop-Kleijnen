@@ -11,7 +11,11 @@ React-Frontend for a fullstack online shop, built with Vite, React, and Bootstra
 - Make sure the backend server is running
 
 ## Tech Stack
-https://img.shields.io/badge/github-repo-blue?logo=github
+![React](https://img.shields.io/badge/Frontend-React-61DAFB?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Bundler-Vite-646CFF?logo=vite&logoColor=white)
+![Node.js](https://img.shields.io/badge/Runtime-Node.js-339933?logo=node.js&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/UI-Bootstrap-7952B3?logo=bootstrap&logoColor=white)
+![GitHub](https://img.shields.io/badge/Version%20Control-GitHub-181717?logo=github&logoColor=white)
 
 ## Installation
 1. Install dependencies
@@ -31,7 +35,6 @@ Replace with your backend address.
 3. Run frontend development server 
 
 ```bash
-// navigate into 
 npm run dev
 ```
 
