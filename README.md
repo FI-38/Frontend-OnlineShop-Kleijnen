@@ -5,7 +5,7 @@ React-Frontend for a fullstack online shop, built with Vite, React, and Bootstra
 
 **Author**: Gracia Kleijnen
 
-## Needed
+## Prerequisites
 - Node.js 
 - MariaDB (for backend)
 - npm
@@ -39,3 +39,73 @@ npm run dev
 ```
 
 The frontend runs on: ``` http://YOUR-IP-ADDRESS:5173 ```
+
+## Get started
+- Register a new account
+- Login with your new account data
+- Products: 
+    (users) Product cards with product title, price, trimmed description. 
+    (users) Click the images to navigate to product detail pages.
+    (admin) Can add new product (title, description, price, image)
+    (admin) Can edit product details per product
+- Product detail page : 
+    Read the full product description. 
+    Add a product to cart. 
+- My Cart: 
+    Increment or decrement quantity per item. 
+    Delete to remove from cart. 
+    Complete order opens modal with an Order Summary. Then resets Cart (saved in App.jsx).
+- Dashboard: Shows order history (planned)
+- My Profile: Shows and lets users edit account data (planned) 
+
+
+## Project structure
+
+```
+Frontend-OnlineShop-Name/
+├── node_modules/
+├── public/
+│   └── images/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── carousel/
+│   │   │   ├── AutoplayCarousel.jsx
+│   │   │   ├── autoplaycaroussel.scss
+│   │   │   ├── carousel-config.js
+│   │   │   └── CarouselItem.jsx
+│   │   ├── modals/
+│   │   │   ├── AddProductModal.jsx
+│   │   │   ├── EditProductModal.jsx
+│   │   │   └── OrderOverviewModal.jsx
+│   │   ├── Cart.jsx
+│   │   ├── Contact.jsx
+│   │   ├── Dashboard.jsx
+│   │   ├── Home.jsx
+│   │   ├── Login.jsx
+│   │   ├── LogoutModal.jsx
+│   │   ├── Navi.jsx
+│   │   ├── PageNotFound.jsx
+│   │   ├── ProductCard.jsx
+│   │   ├── ProductDetail.jsx
+│   │   ├── Products.jsx
+│   │   ├── Profile.jsx
+│   │   ├── ProtextedRoute.jsx
+│   │   └── Register.jsx
+│   ├── styles/
+│   │   ├── Form.css
+│   │   └── Products.css
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── .gitignore
+├── .env.example
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+└── vite.config.js
+
+``` 
