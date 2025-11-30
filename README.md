@@ -75,7 +75,6 @@ Frontend-OnlineShop-Kleijnen/
 ├── public/
 │   └── images/
 ├── src/
-│   ├── assets/
 │   ├── components/
 │   │   ├── carousel/
 │   │   │   ├── AutoplayCarousel.jsx
@@ -101,8 +100,7 @@ Frontend-OnlineShop-Kleijnen/
 │   │   ├── ProtextedRoute.jsx
 │   │   └── Register.jsx
 │   ├── styles/
-│   │   ├── Form.css
-│   │   └── Products.css
+│   │   └── Form.css
 │   ├── App.css
 │   ├── App.jsx
 │   ├── index.css
