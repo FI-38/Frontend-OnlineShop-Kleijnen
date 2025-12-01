@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Nav, Form, Button, Alert, Container} from "react-bootstrap";
-import {  Link } from 'react-router-dom';
-import Table from 'react-bootstrap/Table';
-
+import { Nav, Form, Button, Alert, Container, Table} from "react-bootstrap";
 
 function Profile({ isLoggedIn, userId }) {
   const [message, setMessage] = useState('');

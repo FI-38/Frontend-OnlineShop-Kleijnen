@@ -10,16 +10,18 @@ export default function AutoplayCarousel() {
         {Object.keys(cardDetails).map((detailKey) => {
           return (
             <CarouselItem
+              key={detailKey}
               imgUrl={cardDetails[detailKey].imgUrl}
               imgTitle={cardDetails[detailKey].title}
             ></CarouselItem>
           );
         })}
-        {Object.keys(cardDetails).map((detailKey) => {
+        {Object.keys(cardDetails).map((detailKeyx) => {
           return (
             <CarouselItem
-              imgUrl={cardDetails[detailKey].imgUrl}
-              imgTitle={cardDetails[detailKey].title}
+             key={detailKeyx}
+              imgUrl={cardDetails[detailKeyx].imgUrl}
+              imgTitle={cardDetails[detailKeyx].title}
             ></CarouselItem>
           );
         })}

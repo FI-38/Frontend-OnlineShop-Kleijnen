@@ -15,7 +15,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import PageNotFound from './components/PageNotFound';
 import ProductDetail from './components/ProductDetail';
 
-import LogoutModal from './components/LogoutModal';
+import LogoutModal from './components/modals/LogoutModal';
 
 import './App.css'
 
@@ -43,10 +43,6 @@ function App() {
       setUsername(storedUsername);
     }
   }, []); 
-
-  useEffect(() => {
-    console.log("isLoggedIn is now: ", isLoggedIn);
-  }, [isLoggedIn]);
 
   // LOGOUT
   const handleLogout = () => {
@@ -125,7 +121,6 @@ function App() {
 
   const deleteProductFromCart = (id) => {
     setCart(cart => cart.filter(p => p.productID !== id )
-
     )
   }
 
