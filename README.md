@@ -3,6 +3,8 @@
 
 React-Frontend for a fullstack online shop, built with Vite, React, and Bootstrap as part of my vocational training as a Fachinformatikerin für Anwendungsentwicklung (FIAE).
 
+[Visit the store live](http://kleijnen.fi38.j23d.de/) or [view the backend code](https://github.com/FI-38/Backend-OnlineShop-Kleijnen).
+
 **Author**: Gracia Kleijnen
 
 **User:** <br>
