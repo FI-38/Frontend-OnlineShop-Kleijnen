@@ -6,9 +6,11 @@ React-Frontend for a fullstack online shop, built with Vite, React, and Bootstra
 **Author**: Gracia Kleijnen
 
 **User:**
-![User Flow](<user gif.gif>)
+![User Flow](<images/user.gif>)
 
 **Admin:**
+
+![Admin Berechtigungen on Products page](<images/admin.gif>)
 
 ## Tech Stack
 ![React](https://img.shields.io/badge/Frontend-React-61DAFB?logo=react&logoColor=white)
