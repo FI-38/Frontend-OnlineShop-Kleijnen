@@ -6,11 +6,11 @@ React-Frontend for a fullstack online shop, built with Vite, React, and Bootstra
 **Author**: Gracia Kleijnen
 
 **User:** <br>
-<img src="gifs/user.gif" alt="User flow" width="60%" height="60%" />
+<img src="gifs/user.gif" alt="User flow" width="70%" height="70%" />
 
 
 **Admin:** <br>
-<img src="gifs/admin.gif" alt="Admin Berechtigungen on Products page" width="60%" height="60%" />
+<img src="gifs/admin.gif" alt="Admin Berechtigungen on Products page" width="70%" height="70%" />
 
 
 ## Tech Stack
